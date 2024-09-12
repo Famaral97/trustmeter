@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Em quem confiaria mais?</title>
+    <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Title displayed prominently on the page -->
+    <div class="title">Em quem confiaria mais?</div>
+
+    <div class="container">
+        <!-- Person 1 -->
+        <div class="side">
+            <img src="{{ person1.picture }}" alt="{{ person1.name }}">
+            <div>
+                <h2>{{ person1.name }}</h2>
+                <p>{{ person1.circle }}</p>
+                <button onclick="choosePerson('{{ person1.name }}', '{{ person2.name }}')">Confio mais</button>
+            </div>
+        </div>
+
+        <!-- Person 2 -->
+        <div class="side">
+            <img src="{{ person2.picture }}" alt="{{ person2.name }}">
+            <div>
+                <h2>{{ person2.name }}</h2>
+                <p>{{ person2.circle }}</p>
+                <button onclick="choosePerson('{{ person2.name }}', '{{ person1.name }}')">Confio mais</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Button to navigate to the leaderboard -->
+    <div class="button-container">
+        <button onclick="window.location.href='/leaderboard';">Ver Classificação</button>
+    </div>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/skel-layers.min.js') }}"></script>
+
+</body>
+</html>

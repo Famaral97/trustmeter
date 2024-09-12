@@ -1,0 +1,149 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden; /* Prevent side scrolling */
+}
+.title {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: #2c3e50;
+    text-align: center;
+}
+.podium {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+    width: 100%;
+    max-width: 1200px;
+    flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+}
+.podium .person {
+    text-align: center;
+    margin: 10px;
+    padding: 10px;
+    flex: 1 1 30%; /* Flex items will take up to 30% of the container width */
+    max-width: 350px; /* Ensure no item is too wide */
+}
+.podium .person img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border: 6px solid white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Adds some depth */
+}
+.podium .person h2 {
+    font-size: 22px;
+    margin: 5px 0;
+    color: #2c3e50;
+}
+.podium .person p {
+    font-size: 16px;
+    margin: 0;
+    color: #7f8c8d;
+}
+.leaderboard {
+    width: 100%;
+    max-width: 1200px;
+    border-collapse: collapse;
+}
+.leaderboard th, .leaderboard td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+.leaderboard th {
+    background-color: #3498db;
+    color: white;
+    font-size: 18px;
+}
+.leaderboard td {
+    background-color: #ffffff;
+    vertical-align: middle;
+    text-align: left;
+}
+.leaderboard td.rank {
+    text-align: center;
+    font-size: 20px;
+}
+.leaderboard td img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-right: 10px;
+    border-radius: 10px;
+}
+.leaderboard .name-info {
+    display: flex;
+    align-items: center;
+}
+.leaderboard td h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #2c3e50;
+}
+.leaderboard td p {
+    margin: 0;
+    font-size: 14px;
+    color: #7f8c8d;
+}
+.leaderboard tr:hover td {
+    background-color: #ecf0f1;
+}
+@media (max-width: 1200px) {
+    .podium .person {
+        flex: 1 1 30%; /* Adjust for medium screens */
+        max-width: 33%; /* Ensure items fit in 3 columns */
+    }
+}
+@media (max-width: 768px) {
+    .podium {
+        flex-direction: column; /* Stack podium items vertically */
+        align-items: center;
+    }
+    .podium .person {
+        flex: 1 1 100%; /* Make each item take full width */
+        max-width: 300px; /* Optional: Limit maximum width */
+    }
+    .podium .person img {
+        width: 100px; /* Reduce size for mobile */
+        height: 100px;
+    }
+    .podium .person h2 {
+        font-size: 18px; /* Reduce font size for mobile */
+    }
+    .leaderboard {
+        width: 100%;
+        font-size: 14px; /* Reduce font size for mobile */
+    }
+    .leaderboard th, .leaderboard td {
+        padding: 8px;
+    }
+    .leaderboard td img {
+        width: 40px; /* Smaller image for mobile */
+        height: 40px;
+    }
+}
+.button-container {
+    margin: 20px;
+}
+.button-container button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.button-container button:hover {
+    background-color: #27ae60;
+}

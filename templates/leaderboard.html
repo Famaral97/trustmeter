@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classificação</title>
+    <link href="{{ url_for('static', filename='css/leaderboard.css') }}" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Leaderboard title -->
+    <div class="title">Classificação</div>
+
+    <!-- Podium for top 3 -->
+    <div class="podium">
+        {% for person in people[:3] %}
+        <div class="person">
+            <img src="{{ person.picture }}" alt="{{ person.name }}">
+            <h2>
+                {% if loop.index == 1 %}
+                    🥇
+                {% elif loop.index == 2 %}
+                    🥈
+                {% elif loop.index == 3 %}
+                    🥉
+                {% endif %}
+                {{ person.name }}
+            </h2>
+            <p>{{ person.party }} • {{ person.circle }}</p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="button-container">
+        <button onclick="window.location.href='/'">Voltar para Jogo</button>
+    </div>
+
+    <!-- Leaderboard table -->
+    <table class="leaderboard">
+        <thead>
+            <tr>
+                <th>Lugar</th>
+                <th>Nome</th>
+                <th>Partido</th>
+                <th>Círculo</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for person in people[3:] %}
+            <tr>
+                <td class="rank">#{{ loop.index0 + 4 }}</td>
+                <td class="name-info">
+                    <img src="{{ person.picture }}" alt="{{ person.name }}">
+                    <div>
+                        <h3>{{ person.name }}</h3>
+                    </div>
+                </td>
+                <td>{{ person.party }}</td>
+                <td>{{ person.circle }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+</html>
