@@ -8,6 +8,15 @@ app = Flask(__name__)
 db = connect()
 cursor = db.cursor(dictionary=True)
 
+def get_member_rank(cursor, name):
+    query = "SELECT * FROM members ORDER BY elo DESC;"
+    cursor.execute(query)
+    members = cursor.fetchall()
+
+    for i, member in enumerate(members):
+        if member["name"] == name:
+            return i + 1
+
 def get_member_by_name(cursor, name):
     query = "SELECT * FROM members WHERE name = %s;"
     cursor.execute(query, (name,))
@@ -33,18 +42,21 @@ def home():
         winner_data = get_member_by_name(cursor, winner)
         loser_data = get_member_by_name(cursor, loser)
 
-        print(winner_data, loser_data)
+        previous_rank = get_member_rank(cursor, winner)
 
         new_winner_elo, new_loser_elo = calculate_elo(int(winner_data["elo"]), int(loser_data["elo"]))
-
-        print(new_winner_elo, new_loser_elo)
 
         update_member_elo(db, cursor, winner_data["id"], new_winner_elo)
         update_member_elo(db, cursor, loser_data["id"], new_loser_elo)
 
+        new_rank = get_member_rank(cursor, winner)
+
         cursor.close()
         db.close()
-        return jsonify({"message": f"You chose {winner}"})
+        return jsonify({
+            "winner": winner,
+            "elo_increase": previous_rank - new_rank
+        })
 
     random_members_query = """
     SELECT * FROM members

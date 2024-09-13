@@ -110,3 +110,43 @@ body {
         font-size: 12px;
     }
 }
+
+.ranking-up {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    color: #27ae60;
+    margin-left: 10px;  /* Spacing between name and ranking increase */
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    position: relative;
+    top: 0; /* Keep it aligned with the name */
+}
+
+/* Animations for the container when it's chosen */
+@keyframes grow {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.side.selected {
+    animation: grow 0.6s ease-in-out;
+    border: 2px solid #27ae60;
+}
+
+h2.selected {
+    color: #27ae60;
+}
+
+/* Fade in ranking-up notification */
+.side.show-ranking .ranking-up {
+    opacity: 1;
+    transform: opacity 0.5s ease-in-out;
+}
