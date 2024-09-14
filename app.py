@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, render_template, request
+import random
 
 from connect import connect
 from elo import calculate_elo
@@ -7,6 +8,8 @@ app = Flask(__name__)
 
 db = connect()
 cursor = db.cursor(dictionary=True)
+
+POLITICAL_PARTIES = ["PSD", "PS", "CH", "BE", "PCP", "IL", "L", "CDS-PP", "PAN"]
 
 def get_member_rank(cursor, name):
     query = "SELECT * FROM members ORDER BY elo DESC;"
@@ -90,6 +93,48 @@ def make_leaderboard():
     cursor.close()
     db.close()
     return render_template("leaderboard.html", people=members)
+
+
+@app.route("/guess-party", methods=['GET'])
+def get_guess_party_game():
+    db = connect()
+    cursor = db.cursor(dictionary=True)
+
+    random_member_query = """
+    SELECT * FROM members
+    ORDER BY RAND()
+    LIMIT 1;
+    """
+    cursor.execute(random_member_query)
+    random_member = cursor.fetchone()
+
+    correct_party = random_member["party"]
+    other_parties = [party for party in POLITICAL_PARTIES if party != correct_party]
+    options = random.sample(other_parties, 3) + [correct_party]
+    random.shuffle(options)
+
+    db.commit()
+    cursor.close()
+    db.close()
+
+    return render_template("guessParty.html", member=random_member, options=options)
+
+
+@app.route("/guess-party/check", methods=['POST'])
+def check_party_guess():
+    db = connect()
+    cursor = db.cursor(dictionary=True)
+
+    data = request.json
+    member_name = data.get('member')
+
+    member = get_member_by_name(cursor, member_name)
+
+    db.commit()
+    cursor.close()
+    db.close()
+
+    return jsonify({'correct_party': member["party"]})
 
 
 if __name__ == '__main__':

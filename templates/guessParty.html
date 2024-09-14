@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess the Political Party</title>
+    <link href="{{ url_for('static', filename='css/guessParty.css') }}" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Title displayed prominently on the page -->
+    <div class="title">Qual é o partido político?</div>
+
+    <!-- Container for the single member -->
+    <div class="single-container">
+        <img src="{{ member.picture }}" alt="{{ member.name }}">
+        <div>
+            <h2>{{ member.name }}</h2>
+            <p>{{ member.circle }}</p>
+        </div>
+
+        <!-- Party selection buttons -->
+        <div class="party-buttons">
+            {% for option in options %}
+            <button onclick="chooseParty('{{ member.name }}', '{{ option }}')">{{ option }}</button>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+
+</body>
+</html>
