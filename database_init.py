@@ -20,7 +20,7 @@ def create_tables(db):
     VALUES (%s, %s, %s, %s, %s, %s);
     """
 
-    with open("C:/Users/Utilizador/Documents/Work/EXTRA/trustmeter-data/app/data/members_basic_info.json", "r") as basic_info:
+    with open("/Users/user/Downloads/members_basic_info.json", "r") as basic_info:
         members_data = json.load(basic_info)
 
     for member_data in members_data:

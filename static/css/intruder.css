@@ -1,0 +1,119 @@
+/* General Page Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    overflow: hidden; /* Prevent scrolling */
+}
+
+/* Title Styling */
+.title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #2c3e50;
+    text-align: center;
+}
+
+/* Container for the Intruder Game */
+.container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Always 2 columns */
+    gap: 20px;
+    width: 100%;
+    max-width: 600px; /* Limit width to fit mobile screens */
+}
+
+/* Individual Intruder Containers */
+.intruder-container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px; /* Reduce padding for better mobile fit */
+    text-align: center;
+    transition: transform 0.3s, background-color 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+.intruder-container:hover {
+    transform: translateY(-5px);
+}
+
+/* Image Styling */
+.intruder-container img {
+    width: 100%;
+    max-width: 120px; /* Smaller size for better fit */
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+    margin-bottom: 10px; /* Reduce margin for spacing */
+}
+
+/* Text Styling */
+.intruder-container h2 {
+    font-size: 16px; /* Adjusted size for mobile compatibility */
+    margin-bottom: 5px;
+    color: #2c3e50;
+}
+
+/* Correct and Incorrect Selections */
+.intruder-correct {
+    background-color: #2ecc71; /* Green for correct */
+    color: white;
+}
+
+.intruder-incorrect {
+    background-color: #e74c3c; /* Red for incorrect */
+    color: white;
+}
+
+.intruder-correct-answer {
+    background-color: #a5d6a7; /* Light green for the correct answer if not selected */
+    color: white;
+}
+
+/* Button Container */
+.button-container {
+    margin-top: 20px;
+}
+
+/* Button Styling */
+.button-container button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button-container button:hover {
+    background-color: #2980b9;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .container {
+        gap: 10px; /* Reduce gap between containers for mobile */
+    }
+    .intruder-container {
+        padding: 5px; /* Less padding to fit smaller screens */
+    }
+    .intruder-container img {
+        max-width: 80px; /* Smaller image for mobile */
+    }
+    .intruder-container h2 {
+        font-size: 14px; /* Smaller text size for mobile */
+    }
+}

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quem é o intruso?</title>
+    <link href="{{ url_for('static', filename='css/intruder.css') }}" rel="stylesheet">
+</head>
+<body>
+    <!-- Title for the game -->
+    <div class="title">Quem é o intruso?</div>
+    
+    <!-- Container for members -->
+    <div class="container" id="intruder-game">
+        {% for member in members %}
+        <div class="intruder-container" data-name="{{ member.name }}" data-party="{{ member.party }}">
+            <img src="{{ member.picture }}" alt="{{ member.name }}">
+            <h2>{{ member.name }}</h2>
+        </div>
+        {% endfor %}
+    </div>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/intruder.js') }}"></script>
+</body>
+</html>
