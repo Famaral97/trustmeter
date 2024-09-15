@@ -5,8 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quem é o intruso?</title>
     <link href="{{ url_for('static', filename='css/intruder.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/backButton.css') }}" rel="stylesheet">
 </head>
 <body>
+
+    <!-- Back Home Button (Top Left Corner) -->
+    <button class="back-home-button" onclick="window.location.href='/';">←</button>
+
     <!-- Title for the game -->
     <div class="title">Quem é o intruso?</div>
     

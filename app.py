@@ -30,8 +30,14 @@ def update_member_elo(db, cursor, member_id, new_elo):
     cursor.execute(update_query, (new_elo, member_id))
     db.commit()
 
-@app.route("/", methods=['GET', 'POST'])
+
+@app.route("/")
 def home():
+    return render_template("home.html")
+
+
+@app.route("/dilemma", methods=['GET', 'POST'])
+def get_member_dilemma():
     db = connect()
     cursor = db.cursor(dictionary=True)
 
@@ -75,9 +81,9 @@ def home():
     db.commit()
     cursor.close()
     db.close()
-    return render_template("main.html", person1=random_members[0], person2=random_members[1])
+    return render_template("dilemma.html", person1=random_members[0], person2=random_members[1])
 
-@app.route("/leaderboard")
+@app.route("/dilemma/leaderboard")
 def make_leaderboard():
     db = connect()
     cursor = db.cursor(dictionary=True)

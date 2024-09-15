@@ -1,5 +1,5 @@
 function choosePerson(winner, loser, personNumber) {
-    fetch("/", {
+    fetch("/dilemma", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

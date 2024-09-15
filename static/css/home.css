@@ -1,0 +1,52 @@
+/* Container for the buttons */
+.landing-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+/* Title styling */
+.landing-title {
+    font-size: 2.5em; /* Relative unit for scaling */
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: #2c3e50;
+    text-align: center;
+}
+
+/* Buttons styling */
+.landing-button {
+    padding: 15px 30px; /* Larger padding for better touch targets */
+    font-size: 1.2em; /* Scales with screen size */
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 10px 0; /* Spacing between buttons */
+    width: 100%; /* Ensure the button scales properly */
+    max-width: 300px; /* Set a maximum width */
+    text-align: center;
+}
+
+.landing-button:hover {
+    background-color: #2980b9;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 600px) {
+    .landing-title {
+        font-size: 2em; /* Slightly smaller font for smaller screens */
+    }
+
+    .landing-button {
+        font-size: 1em; /* Adjust button text size */
+        padding: 12px 25px; /* Adjust padding for smaller screens */
+        max-width: 100%; /* Use full width on small screens */
+    }
+}

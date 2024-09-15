@@ -4,9 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Em quem confiaria mais?</title>
-    <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/dilemma.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/backButton.css') }}" rel="stylesheet">
 </head>
 <body>
+
+    <!-- Back Home Button (Top Left Corner) -->
+    <button class="back-home-button" onclick="window.location.href='/';">←</button>
 
     <!-- Title displayed prominently on the page -->
     <div class="title">Em quem confiaria mais?</div>
@@ -35,7 +39,7 @@
 
     <!-- Button to navigate to the leaderboard -->
     <div class="button-container">
-        <button onclick="window.location.href='/leaderboard';">Ver Classificação</button>
+        <button onclick="window.location.href='/dilemma/leaderboard';">Ver Classificação</button>
     </div>
 
     <script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js') }}"></script>

@@ -5,8 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guess the Political Party</title>
     <link href="{{ url_for('static', filename='css/guessParty.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/backButton.css') }}" rel="stylesheet">
 </head>
 <body>
+
+    <!-- Back Home Button (Top Left Corner) -->
+    <button class="back-home-button" onclick="window.location.href='/';">←</button>
 
     <!-- Title displayed prominently on the page -->
     <div class="title">Qual é o partido político?</div>
