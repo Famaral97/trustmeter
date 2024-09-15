@@ -1,22 +1,20 @@
 from flask import Blueprint, render_template, request, jsonify
 
-from app.utils.database import connect, get_member_by_name, get_member_rank, update_member_elo
+from app.utils.database import connect, get_member_by_name, get_member_rank, update_member_elo, with_db_connection
 from app.utils.elo import calculate_elo
 
 dilemma_bp = Blueprint('dilemma', __name__)
 
 
 @dilemma_bp.route("/dilemma", methods=['GET', 'POST'])
-def get_member_dilemma():
-    db = connect()
-    cursor = db.cursor(dictionary=True)
+@with_db_connection
+def get_member_dilemma(cursor, db):
 
     if request.method == 'POST':
         data = request.get_json()
         winner = data.get('winner')
         loser = data.get('loser')
         print(f"Person chosen: {winner} (against {loser})")
-
 
         winner_data = get_member_by_name(cursor, winner)
         loser_data = get_member_by_name(cursor, loser)
@@ -30,8 +28,6 @@ def get_member_dilemma():
 
         new_rank = get_member_rank(cursor, winner)
 
-        cursor.close()
-        db.close()
         return jsonify({
             "winner": winner,
             "elo_increase": previous_rank - new_rank
@@ -48,15 +44,12 @@ def get_member_dilemma():
     for member in random_members:
         member.pop("party")
 
-    db.commit()
-    cursor.close()
-    db.close()
     return render_template("dilemma.html", person1=random_members[0], person2=random_members[1])
 
+
 @dilemma_bp.route("/dilemma/leaderboard")
-def make_leaderboard():
-    db = connect()
-    cursor = db.cursor(dictionary=True)
+@with_db_connection
+def make_leaderboard(cursor, db):
 
     query = "SELECT * FROM members ORDER BY elo DESC;"
     cursor.execute(query)
@@ -65,7 +58,4 @@ def make_leaderboard():
     for member in members:
         member.pop("elo")
 
-    db.commit()
-    cursor.close()
-    db.close()
     return render_template("leaderboard.html", people=members)

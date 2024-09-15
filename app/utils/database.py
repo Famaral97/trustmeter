@@ -1,6 +1,8 @@
 import mysql.connector
 import os
 from dotenv import load_dotenv 
+from functools import wraps
+
 
 def connect():
     load_dotenv()    
@@ -10,6 +12,29 @@ def connect():
       password=os.getenv("DB_PASSWORD"),
       database=os.getenv("DB_NAME")
     )
+
+
+def with_db_connection(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        db = connect()
+        cursor = db.cursor(dictionary=True)
+        
+        kwargs['cursor'] = cursor
+        kwargs['db'] = db
+        
+        try:
+            result = func(*args, **kwargs)
+            db.commit()
+            return result
+        except Exception as e:
+            db.rollback()
+            raise e
+        finally:
+            cursor.close()
+            db.close()
+
+    return wrapper
 
 
 def get_member_rank(cursor, name):
