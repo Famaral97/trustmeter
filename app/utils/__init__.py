@@ -1,0 +1,1 @@
+POLITICAL_PARTIES = ["PSD", "PS", "CH", "BE", "PCP", "IL", "L", "CDS-PP", "PAN"]
