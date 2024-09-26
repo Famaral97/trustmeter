@@ -20,19 +20,30 @@ function checkIntruder(selectedName) {
         // Highlight the selected container
         containers.forEach(container => {
             const name = container.getAttribute('data-name');
+            const partyName = document.createElement("div")
             if (name === data.selected_name) {
-                container.classList.add(data.is_intruder ? 'intruder-correct' : 'intruder-incorrect');
+                if (data.is_intruder) {
+                    container.classList.add('intruder-correct')
+                    partyName.innerHTML = data.intruder_party
+                } else {
+                    container.classList.add('intruder-incorrect')
+                    partyName.innerHTML = data.majority_party
+                }
             }
             if (name === data.intruder_name) {
-                container.classList.add('intruder-correct-answer');
+                container.classList.add('intruder-correct-answer')
+                partyName.innerHTML = data.intruder_party
+            } else {
+                partyName.innerHTML = data.majority_party
             }
+            container.appendChild(partyName)
             // Disable further clicking
             container.style.pointerEvents = 'none';
         });
 
         setTimeout(() => {
             location.reload();
-        }, 1000);
+        }, 2000);
     })
     .catch(error => {
         console.error('Error:', error);

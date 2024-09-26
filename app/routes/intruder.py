@@ -57,5 +57,7 @@ def check_intruder(cursor, db):
     return jsonify({
         'is_intruder': is_intruder,
         'intruder_name': intruder_name,
-        'selected_name': selected_name
+        'selected_name': selected_name,
+        "majority_party": majority_party,
+        "intruder_party": intruder['party']
     })
