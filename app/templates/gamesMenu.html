@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogos</title>
+    <link href="{{ url_for('static', filename='css/home.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/backButton.css') }}" rel="stylesheet">
+</head>
+<body>
+    <button class="back-home-button" onclick="window.location.href='/';">←</button>
+
+    <div class="landing-container">
+        <h1 class="landing-title">Jogos</h1>
+        
+        <button class="landing-button" onclick="window.location.href='/games/dilemma';">Dilema</button>
+        <button class="landing-button" onclick="window.location.href='/games/intruder';">Intruso</button>
+        <button class="landing-button" onclick="window.location.href='/games/guess-party';">Partido</button>
+    </div>
+</body>
+</html>

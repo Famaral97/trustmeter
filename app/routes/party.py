@@ -6,7 +6,7 @@ from app.utils.database import connect, get_member_by_name, with_db_connection
 
 party_bp = Blueprint('party', __name__)
 
-@party_bp.route("/guess-party", methods=['GET'])
+@party_bp.route("/games/guess-party", methods=['GET'])
 @with_db_connection
 def get_guess_party_game(cursor, db):
 
@@ -26,7 +26,7 @@ def get_guess_party_game(cursor, db):
     return render_template("guessParty.html", member=random_member, options=options)
 
 
-@party_bp.route("/guess-party/check", methods=['POST'])
+@party_bp.route("/games/guess-party/check", methods=['POST'])
 @with_db_connection
 def check_party_guess(cursor, db):
 

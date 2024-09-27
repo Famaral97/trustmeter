@@ -6,7 +6,7 @@ function checkIntruder(selectedName) {
     });
 
     // Make a POST request to the Flask server to check the intruder
-    fetch('/intruder/check', {
+    fetch('/games/intruder/check', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

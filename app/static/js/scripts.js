@@ -1,5 +1,5 @@
 function choosePerson(winner, loser, personNumber) {
-    fetch("/dilemma", {
+    fetch("/games/dilemma", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -64,7 +64,7 @@ function choosePerson(winner, loser, personNumber) {
 
 
 function chooseParty(memberName, chosenParty) {
-    fetch("/guess-party/check", {
+    fetch("/games/guess-party/check", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

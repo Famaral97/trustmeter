@@ -6,7 +6,7 @@ from app.utils.elo import calculate_elo
 dilemma_bp = Blueprint('dilemma', __name__)
 
 
-@dilemma_bp.route("/dilemma", methods=['GET', 'POST'])
+@dilemma_bp.route("/games/dilemma", methods=['GET', 'POST'])
 @with_db_connection
 def get_member_dilemma(cursor, db):
 
@@ -47,7 +47,7 @@ def get_member_dilemma(cursor, db):
     return render_template("dilemma.html", person1=random_members[0], person2=random_members[1])
 
 
-@dilemma_bp.route("/dilemma/leaderboard")
+@dilemma_bp.route("/games/dilemma/leaderboard")
 @with_db_connection
 def make_leaderboard(cursor, db):
 

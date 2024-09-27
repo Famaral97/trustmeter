@@ -7,7 +7,7 @@ from app.utils.database import connect, get_member_by_name, with_db_connection
 intruder_bp = Blueprint('intruder', __name__)
 
 
-@intruder_bp.route('/intruder')
+@intruder_bp.route('/games/intruder')
 @with_db_connection
 def intruder_game(cursor, db):
     
@@ -37,7 +37,7 @@ def intruder_game(cursor, db):
     return render_template('intruder.html', members=options)
 
 
-@intruder_bp.route('/intruder/check', methods=['POST'])
+@intruder_bp.route('/games/intruder/check', methods=['POST'])
 @with_db_connection
 def check_intruder(cursor, db):
 
