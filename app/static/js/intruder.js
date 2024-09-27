@@ -30,9 +30,11 @@ function checkIntruder(selectedName) {
                     partyName.innerHTML = data.majority_party
                 }
             }
-            if (name === data.intruder_name) {
-                container.classList.add('intruder-correct-answer')
+            else if (name === data.intruder_name) {
                 partyName.innerHTML = data.intruder_party
+                setTimeout(() => {
+                    container.classList.add('intruder-correct-answer')
+                }, 500)
             } else {
                 partyName.innerHTML = data.majority_party
             }
